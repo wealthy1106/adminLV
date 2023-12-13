@@ -46,12 +46,6 @@
                               </router-link>
                         </li>
                         <li class="nav-item">
-                              <router-link class="nav-link" :to="{ name: 'ngaykhoihanhtour' }">
-                                    <!-- <i class="typcn typcn-device-desktop menu-icon"></i> -->
-                                    <span class="menu-title">Ngày khởi hành tour</span>
-                              </router-link>
-                        </li>
-                        <li class="nav-item">
                               <router-link class="nav-link" :to="{ name: 'tinhthanh' }">
                                     <!-- <i class="typcn typcn-device-desktop menu-icon"></i> -->
                                     <span class="menu-title">Tỉnh thành</span>
@@ -352,12 +346,23 @@ export default {
       },
 
       mounted() {
+            console.log('user', localStorage.getItem('user'))
+            this.iduser = localStorage.getItem('user')
+            this.token = localStorage.getItem('token')
             // Gửi yêu cầu đến API để lấy số lượng lượt truy cập
             this.fetchPageViews();
 
             // Tăng số lượng lượt truy cập khi trang được tải
             this.incrementPageViews();
-
+            if (localStorage.getItem('reloaded')) {
+                  //       // The page was just reloaded. Clear the value from local storage
+                  //       // so that it will reload the next time this page is visited.
+                  localStorage.removeItem('reloaded');
+            } else {
+                  //       // Set a flag so that we know not to reload the page twice.
+                  localStorage.setItem('reloaded', '1');
+                  location.reload();
+            }
       },
       methods: {
             async fetchPageViews() {

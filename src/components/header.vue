@@ -38,69 +38,21 @@
                                     </a>
                               </li>
                               <li class="nav-item">
-                                    <a class="nav-link count-indicator d-flex justify-content-center align-items-center"
+                                    <a @click="dangxuat" v-if="hienlen"
+                                          class="nav-link count-indicator d-flex justify-content-center align-items-center"
                                           id="messageDropdown" href="#">
                                           Đăng xuất
                                           <span class="count"></span>
                                     </a>
-                                    <!-- <select id="messageDropdown"
-                                          class="custom-select nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center">
-                                          <option selected>Cài đặt</option>
-                                          <option value="1">One</option>
-                                          <option value="2">Two</option>
-                                          <option value="3">Three</option>
-                                    </select> -->
-                              </li>
-                              <!-- <li class="nav-item dropdown"> -->
 
-                              <!-- <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
-                                          id="messageDropdown" href="#" data-toggle="dropdown">
-                                          <i class="typcn typcn-cog-outline mx-0"></i>
+                                    <a v-if="hienlai"
+                                          class="nav-link count-indicator d-flex justify-content-center align-items-center"
+                                          id="messageDropdown" href="#">
+                                          Đăng nhập
                                           <span class="count"></span>
-                                    </a> -->
-                              <!-- <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                                          aria-labelledby="messageDropdown">
-                                          <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-                                          <a class="dropdown-item preview-item">
-                                                <div class="preview-thumbnail">
-                                                      <img src="./src/giaodien/images/faces/face4.jpg" alt="image"
-                                                            class="profile-pic">
-                                                </div>
-                                                <div class="preview-item-content flex-grow">
-                                                      <h6 class="preview-subject ellipsis font-weight-normal">David Grey
-                                                      </h6>
-                                                      <p class="font-weight-light small-text text-muted mb-0">
-                                                            The meeting is cancelled
-                                                      </p>
-                                                </div>
-                                          </a>
-                                          <a class="dropdown-item preview-item">
-                                                <div class="preview-thumbnail">
-                                                      <img src="images/faces/face2.jpg" alt="image" class="profile-pic">
-                                                </div>
-                                                <div class="preview-item-content flex-grow">
-                                                      <h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
-                                                      </h6>
-                                                      <p class="font-weight-light small-text text-muted mb-0">
-                                                            New product launch
-                                                      </p>
-                                                </div>
-                                          </a>
-                                          <a class="dropdown-item preview-item">
-                                                <div class="preview-thumbnail">
-                                                      <img src="images/faces/face3.jpg" alt="image" class="profile-pic">
-                                                </div>
-                                                <div class="preview-item-content flex-grow">
-                                                      <h6 class="preview-subject ellipsis font-weight-normal"> Johnson
-                                                      </h6>
-                                                      <p class="font-weight-light small-text text-muted mb-0">
-                                                            Upcoming board meeting
-                                                      </p>
-                                                </div>
-                                          </a>
-                                    </div> -->
+                                    </a>
 
-                              <!-- </li> -->
+                              </li>
 
                         </ul>
                         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
@@ -120,9 +72,33 @@ export default {
             const currentDate = new Date();
             return {
                   formattedDate: this.formatDate(currentDate),
+                  hienlen: false,
+                  hienlai: false,
             };
       },
+      mounted() {
+            console.log('user', localStorage.getItem('user'))
+            this.iduser = localStorage.getItem('user')
+            this.token = localStorage.getItem('token')
+            if (this.token != null) {
+                  this.hienlen = true
+                  this.hienlai = false
+                  // this.hienlen = false
+                  // this.hienlai = true
+            } else {
+                  this.hienlen = false
+                  this.hienlai = true
+
+            }
+      },
       methods: {
+            dangxuat() {
+                  localStorage.removeItem('token');
+                  localStorage.removeItem('user')
+                  this.hienlen = true
+                  // this.hienlai = true
+                  this.$router.push({ name: 'login' });
+            },
             formatDate(date) {
                   const day = date.getDate();
                   const month = date.getMonth() + 1; // Lưu ý: getMonth() trả về từ 0 - 11

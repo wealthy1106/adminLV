@@ -7,6 +7,11 @@ const routes = [
             component: () => import("@/components/trangchu.vue")
       },
       {
+            path: "/login",
+            name: "login",
+            component: () => import("@/components/login.vue")
+      },
+      {
             path: "/thongke",
             name: "thongke",
             component: () => import("@/components/thongke.vue")

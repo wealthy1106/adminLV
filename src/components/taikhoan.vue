@@ -46,12 +46,6 @@
                               </router-link>
                         </li>
                         <li class="nav-item">
-                              <router-link class="nav-link" :to="{ name: 'ngaykhoihanhtour' }">
-                                    <!-- <i class="typcn typcn-device-desktop menu-icon"></i> -->
-                                    <span class="menu-title size">Ngày khởi hành tour</span>
-                              </router-link>
-                        </li>
-                        <li class="nav-item">
                               <router-link class="nav-link" :to="{ name: 'tinhthanh' }">
                                     <!-- <i class="typcn typcn-device-desktop menu-icon"></i> -->
                                     <span class="menu-title size">Tỉnh thành</span>

@@ -3,13 +3,13 @@
       <div class="container-fluid page-body-wrapper">
             <nav class="sidebar sidebar-offcanvas" id="sidebar" style="margin-top: 100px;">
                   <ul class="nav">
-                        <li class="nav-item native">
+                        <li class="nav-item">
                               <router-link class="nav-link" :to="{ name: 'taikhoan' }">
                                     <!-- <i class="typcn typcn-device-desktop menu-icon"></i> -->
                                     <span class="menu-title">Tài khoản</span>
                               </router-link>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item native">
                               <router-link class="nav-link" :to="{ name: 'diadanh' }">
                                     <!-- <i class="typcn typcn-device-desktop menu-icon"></i> -->
                                     <span class="menu-title">Địa danh</span>
@@ -46,12 +46,6 @@
                               </router-link>
                         </li>
                         <li class="nav-item">
-                              <router-link class="nav-link" :to="{ name: 'ngaykhoihanhtour' }">
-                                    <!-- <i class="typcn typcn-device-desktop menu-icon"></i> -->
-                                    <span class="menu-title">Ngày khởi hành tour</span>
-                              </router-link>
-                        </li>
-                        <li class="nav-item">
                               <router-link class="nav-link" :to="{ name: 'tinhthanh' }">
                                     <!-- <i class="typcn typcn-device-desktop menu-icon"></i> -->
                                     <span class="menu-title">Tỉnh thành</span>
@@ -85,55 +79,24 @@
             </nav>
             <div class="main-panel">
                   <div class="content-wrapper">
-                        <div class="row r1">
-                              <div class="col-md-4 grid-margin stretch-card">
-                                    <div class="card">
-                                          <div class="card-body">
-                                                <div
-                                                      class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">
-                                                      <div>
-                                                            <p class="mb-2 text-md-center text-lg-left">Lượt đặt tour</p>
-                                                            <h1 class="mb-0">8742</h1>
-                                                      </div>
-                                                      <i class="typcn typcn-briefcase icon-xl text-secondary"></i>
-                                                </div>
-                                                <canvas id="expense-chart" height="80"></canvas>
-                                          </div>
-                                    </div>
-                              </div>
-                              <div class="col-md-4 grid-margin stretch-card">
-                                    <div class="card">
-                                          <div class="card-body">
-                                                <div
-                                                      class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">
-                                                      <div>
-                                                            <p class="mb-2 text-md-center text-lg-left">Tổng số tour</p>
-                                                            <h1 class="mb-0">47,840</h1>
-                                                      </div>
-                                                      <i class="typcn typcn-chart-pie icon-xl text-secondary"></i>
-                                                </div>
-                                                <canvas id="budget-chart" height="80"></canvas>
-                                          </div>
-                                    </div>
-                              </div>
-                              <div class="col-md-4 grid-margin stretch-card">
-                                    <div class="card">
-                                          <div class="card-body">
-                                                <div
-                                                      class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">
-                                                      <div>
-                                                            <p class="mb-2 text-md-center text-lg-left">Tổng doanh thu</p>
-                                                            <h1 class="mb-0">7,243 </h1>
-                                                      </div>
-                                                      <img style="width: 20%;"
-                                                            src="https://cdn-icons-png.flaticon.com/512/38/38251.png" alt="">
-                                                </div>
-                                                <canvas id="balance-chart" height="80"></canvas>
-                                          </div>
-                                    </div>
-                              </div>
-                        </div>
+                        <div>
+                              <h3>Danh sách liên hệ</h3>
 
+                        </div>
+                        <!-- <div id="thongbao" class="card text-center thongbao" v-if="isVisible">
+                              <div class="card-header">
+                                    Thêm biểu tượng xóa ở đây 
+                                    <button class="close" @click="closeNotification">
+                                          <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    Thông báo
+                              </div>
+                              <div class="card-body">
+                                    <h5 class="card-title">{{ message }}</h5>
+                                    <button @click="deleteLT" style="width: 100px;" type="button" class="btn btn-primary">Xác
+                                          nhận</button>
+                              </div>
+                        </div> -->
                         <div class="row">
                               <div class="col-md-12">
                                     <div class="card">
@@ -141,136 +104,127 @@
                                                 <table class="table table-striped project-orders-table">
                                                       <thead>
                                                             <tr>
+                                                                  <th>STT</th>
                                                                   <th class="ml-5">ID</th>
-                                                                  <th>Project name</th>
-                                                                  <th>Customer</th>
-                                                                  <th>Deadline</th>
-                                                                  <th>Payouts </th>
-                                                                  <th>Traffic</th>
+                                                                  <th>Địa chỉ</th>
+                                                                  <th>Email</th>
+                                                                  <th>Số điện thoại</th>
                                                                   <th>Actions</th>
                                                             </tr>
                                                       </thead>
                                                       <tbody>
-                                                            <tr>
-                                                                  <td>#D1</td>
-                                                                  <td>Consectetur adipisicing elit </td>
-                                                                  <td>Beulah Cummings</td>
-                                                                  <td>03 Jan 2019</td>
-                                                                  <td>$ 5235</td>
-                                                                  <td>1.3K</td>
+                                                            <tr :key="index" v-for="(tt, index) in dsLT ">
+                                                                  <td>{{ index + 1 }}</td>
+                                                                  <td>{{ tt.idLH }}</td>
+                                                                  <td>{{ tt.diachiLH }}</td>
+                                                                  <td>{{ tt.emailLH }}</td>
+                                                                  <td>{{ tt.sdtLH }}</td>
                                                                   <td>
                                                                         <div class="d-flex align-items-center">
-                                                                              <button type="button"
+                                                                              <!-- <button type="button"
                                                                                     class="btn btn-success btn-sm btn-icon-text mr-3">
+                                                                                    
+                                                                              </button> -->
+                                                                              <!-- Button trigger modal -->
+                                                                              <button type="button" @click="chinhsua(tt.idLH)"
+                                                                                    class="btn btn-success btn-sm btn-icon-text mr-3"
+                                                                                    data-toggle="modal"
+                                                                                    data-target="#exampleModal">
                                                                                     Edit
                                                                                     <i
                                                                                           class="typcn typcn-edit btn-icon-append"></i>
                                                                               </button>
-                                                                              <button type="button"
+
+                                                                              <!-- Modal -->
+                                                                              <div class="modal fade" id="exampleModal"
+                                                                                    tabindex="-1"
+                                                                                    aria-labelledby="exampleModalLabel"
+                                                                                    aria-hidden="true">
+                                                                                    <div class="modal-dialog">
+                                                                                          <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                      <h5 class="modal-title"
+                                                                                                            id="exampleModalLabel">
+                                                                                                            Chỉnh sửa</h5>
+                                                                                                      <button type="button"
+                                                                                                            class="close"
+                                                                                                            data-dismiss="modal"
+                                                                                                            aria-label="Close">
+                                                                                                            <span
+                                                                                                                  aria-hidden="true">&times;</span>
+                                                                                                      </button>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                      <div :key="index"
+                                                                                                            v-for="(tt, index) in Lienhedon ">
+                                                                                                            <div
+                                                                                                                  class="form-group">
+                                                                                                                  <label
+                                                                                                                        for="formGroupExampleInput">Email</label>
+                                                                                                                  <input type="text"
+                                                                                                                        class="form-control"
+                                                                                                                        v-model="tt.emailLH"
+                                                                                                                        id="formGroupExampleInput"
+                                                                                                                        placeholder="Example input placeholder">
+                                                                                                            </div>
+                                                                                                            <div
+                                                                                                                  class="form-group">
+                                                                                                                  <label
+                                                                                                                        for="">Số
+                                                                                                                        điện
+                                                                                                                        thoại</label>
+                                                                                                                  <input class="form-control"
+                                                                                                                        v-model="tt.sdtLH"
+                                                                                                                        id=""
+                                                                                                                        rows="3">
+                                                                                                            </div>
+                                                                                                            <div
+                                                                                                                  class="form-group">
+                                                                                                                  <label
+                                                                                                                        for="exampleFormControlTextarea1">Địa
+                                                                                                                        chỉ</label>
+                                                                                                                  <textarea
+                                                                                                                        class="form-control"
+                                                                                                                        v-model="tt.diachiLH"
+                                                                                                                        id="exampleFormControlTextarea1"
+                                                                                                                        rows="3"></textarea>
+                                                                                                            </div>
+                                                                                                            <div
+                                                                                                                  class="form-group">
+                                                                                                                  <label
+                                                                                                                        for="exampleFormControlTextarea1">Địa
+                                                                                                                        chỉ
+                                                                                                                        map</label>
+                                                                                                                  <textarea
+                                                                                                                        class="form-control"
+                                                                                                                        v-model="tt.map"
+                                                                                                                        id="exampleFormControlTextarea1"
+                                                                                                                        rows="3"></textarea>
+                                                                                                            </div>
+                                                                                                      </div>
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                      <button type="button"
+                                                                                                            class="btn btn-secondary"
+                                                                                                            data-dismiss="modal">Đóng</button>
+                                                                                                      <button type="button"
+                                                                                                            @click="update()"
+                                                                                                            class="btn btn-primary">Chỉnh
+                                                                                                            sửa</button>
+                                                                                                </div>
+                                                                                          </div>
+                                                                                    </div>
+                                                                              </div>
+                                                                              <!-- <button type="button" @click="showTT(tt.idLH)"
                                                                                     class="btn btn-danger btn-sm btn-icon-text">
                                                                                     Delete
                                                                                     <i
                                                                                           class="typcn typcn-delete-outline btn-icon-append"></i>
-                                                                              </button>
+                                                                              </button> -->
                                                                         </div>
                                                                   </td>
                                                             </tr>
-                                                            <tr>
-                                                                  <td>#D2</td>
-                                                                  <td>Correlation natural resources silo</td>
-                                                                  <td>Mitchel Dunford</td>
-                                                                  <td>09 Oct 2019</td>
-                                                                  <td>$ 3233</td>
-                                                                  <td>5.4K</td>
-                                                                  <td>
-                                                                        <div class="d-flex align-items-center">
-                                                                              <button type="button"
-                                                                                    class="btn btn-success btn-sm btn-icon-text mr-3">
-                                                                                    Edit
-                                                                                    <i
-                                                                                          class="typcn typcn-edit btn-icon-append"></i>
-                                                                              </button>
-                                                                              <button type="button"
-                                                                                    class="btn btn-danger btn-sm btn-icon-text">
-                                                                                    Delete
-                                                                                    <i
-                                                                                          class="typcn typcn-delete-outline btn-icon-append"></i>
-                                                                              </button>
-                                                                        </div>
-                                                                  </td>
-                                                            </tr>
-                                                            <tr>
-                                                                  <td>#D3</td>
-                                                                  <td>social capital compassion social</td>
-                                                                  <td>Pei Canaday</td>
-                                                                  <td>18 Jun 2019</td>
-                                                                  <td>$ 4311</td>
-                                                                  <td>2.1K</td>
-                                                                  <td>
-                                                                        <div class="d-flex align-items-center">
-                                                                              <button type="button"
-                                                                                    class="btn btn-success btn-sm btn-icon-text mr-3">
-                                                                                    Edit
-                                                                                    <i
-                                                                                          class="typcn typcn-edit btn-icon-append"></i>
-                                                                              </button>
-                                                                              <button type="button"
-                                                                                    class="btn btn-danger btn-sm btn-icon-text">
-                                                                                    Delete
-                                                                                    <i
-                                                                                          class="typcn typcn-delete-outline btn-icon-append"></i>
-                                                                              </button>
-                                                                        </div>
-                                                                  </td>
-                                                            </tr>
-                                                            <tr>
-                                                                  <td>#D4</td>
-                                                                  <td>empower communities thought</td>
-                                                                  <td>Gaynell Sharpton</td>
-                                                                  <td>23 Mar 2019</td>
-                                                                  <td>$ 7743</td>
-                                                                  <td>2.7K</td>
-                                                                  <td>
-                                                                        <div class="d-flex align-items-center">
-                                                                              <button type="button"
-                                                                                    class="btn btn-success btn-sm btn-icon-text mr-3">
-                                                                                    Edit
-                                                                                    <i
-                                                                                          class="typcn typcn-edit btn-icon-append"></i>
-                                                                              </button>
-                                                                              <button type="button"
-                                                                                    class="btn btn-danger btn-sm btn-icon-text">
-                                                                                    Delete
-                                                                                    <i
-                                                                                          class="typcn typcn-delete-outline btn-icon-append"></i>
-                                                                              </button>
-                                                                        </div>
-                                                                  </td>
-                                                            </tr>
-                                                            <tr>
-                                                                  <td>#D5</td>
-                                                                  <td> Targeted effective; mobilize </td>
-                                                                  <td>Audrie Midyett</td>
-                                                                  <td>22 Aug 2019</td>
-                                                                  <td>$ 2455</td>
-                                                                  <td>1.2K</td>
-                                                                  <td>
-                                                                        <div class="d-flex align-items-center">
-                                                                              <button type="button"
-                                                                                    class="btn btn-success btn-sm btn-icon-text mr-3">
-                                                                                    Edit
-                                                                                    <i
-                                                                                          class="typcn typcn-edit btn-icon-append"></i>
-                                                                              </button>
-                                                                              <button type="button"
-                                                                                    class="btn btn-danger btn-sm btn-icon-text">
-                                                                                    Delete
-                                                                                    <i
-                                                                                          class="typcn typcn-delete-outline btn-icon-append"></i>
-                                                                              </button>
-                                                                        </div>
-                                                                  </td>
-                                                            </tr>
+
                                                       </tbody>
                                                 </table>
                                           </div>
@@ -287,4 +241,105 @@
 .r1 {
       padding: 60px 10px;
 }
+
+.main-panel {
+      /* z-index: 3; */
+      padding: 100px 10px 10px;
+}
+
+span .menu-title {
+      font-size: 18px;
+}
+
+.thongbao {
+      width: 300px;
+      z-index: 1;
+      position: fixed;
+      margin: 10px 180px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+}
 </style>
+<script>
+import axios from 'axios';
+import moment from 'moment';
+// import thongbao from "@/components/thongbao/dangxuat.vue";
+export default {
+      data() {
+            return {
+                  isVisible: false,
+                  message: "",
+                  dsLT: [],
+                  Lienhedon: [],
+                  updateLH: [],
+            };
+      },
+
+      mounted() {
+
+            axios.get('http://localhost:3000/api/lienhe/')
+                  .then((response) => {
+                        this.dsLT = response.data;
+                        // console.log('dsDD', this.dsLT)
+                  })
+                  .catch((error) => {
+                        console.log(error);
+                  });
+
+
+      },
+      methods: {
+            showTT(idLH) {
+                  // console.log('isLT1', idLT)
+                  this.idLTdelete = idLH
+                  // console.log('isLT1', this.idLTdelete)
+                  this.showNotification("Xác nhận xóa");
+            },
+            showNotification(message) {
+                  this.$refs.notification.showNotification(message);
+            },
+            showNotification(message) {
+                  this.message = message;
+                  this.isVisible = true;
+
+                  // Tự động đóng sau 30 giây
+                  // setTimeout(() => {
+                  //       this.closeNotification();
+                  // }, 30000);
+            },
+            closeNotification() {
+                  this.isVisible = false;
+            },
+            chinhsua(idLH) {
+                  axios.get('http://localhost:3000/api/lienhe/' + idLH)
+                        .then((response) => {
+                              this.Lienhedon = response.data;
+                              // console.log('dd', this.Lienhedon)
+                        })
+                        .catch((error) => {
+                              console.log(error);
+                        });
+            },
+            update() {
+                  // const ngayThangChuyenDoi = moment(this.LTdon[0].ngaykhoihanh, 'D-M-Y').format('Y-M-D');
+                  // console.log('dd1', this.LTdon)
+                  axios.put('http://localhost:3000/api/lienhe/' + this.Lienhedon[0].idLH, {
+                        "emailLH": this.Lienhedon[0].emailLH,
+                        "diachiLH": this.Lienhedon[0].diachiLH,
+                        "sdtLH": this.Lienhedon[0].sdtLH,
+                        "map": this.Lienhedon[0].map
+                  })
+                        .then((response) => {
+                              this.updateLH = response.data;
+                              // console.log('daupdate', this.updateLH)
+                        })
+                        .catch((error) => {
+                              console.log(error);
+                        });
+                  window.location.reload();
+            },
+
+      },
+
+};
+</script>
