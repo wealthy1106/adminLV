@@ -75,21 +75,24 @@
                                     <span class="menu-title">Vé tour</span>
                               </router-link>
                         </li>
+                        <li class="nav-item">
+                              <router-link class="nav-link" :to="{ name: 'TDD' }">
+                                    <!-- <i class="typcn typcn-device-desktop menu-icon"></i> -->
+                                    <span class="menu-title">Tour_DD</span>
+                              </router-link>
+                        </li>
                   </ul>
             </nav>
             <div class="main-panel">
                   <div class="content-wrapper">
                         <div class="row">
-                              <h3 class="col-6">Danh sách tour</h3>
-                              <div class="col-6">
-                                    <button :key="index" v-for="(tt, index) in tongLT" type="button"
-                                          class="btn btn-outline-primary btn-fw">Tổng tour {{ tt.tong }}</button>
-                              </div>
+                              <h3>Danh sách tour địa danh</h3>
+
                               <div>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                           data-target="#staticBackdrop">
-                                          Thêm tour
+                                          Thêm
                                     </button>
 
                                     <!-- Modal -->
@@ -106,63 +109,23 @@
                                                       </div>
                                                       <div class="modal-body">
                                                             <div :key="index" v-for="(tt, index) in themLT ">
-                                                                  <div class="form-group">
-                                                                        <label for="formGroupExampleInput">Tên
-                                                                              tour</label>
+                                                                  <div>
+                                                                        <label for="formGroupExampleInput">Id tour</label>
                                                                         <input type="text" class="form-control"
-                                                                              v-model="tt.tenT" id="formGroupExampleInput"
+                                                                              v-model="tt.idT" id="formGroupExampleInput"
                                                                               placeholder="">
                                                                   </div>
-                                                                  <div class="form-group">
-                                                                        <label for="formGroupExampleInput">Giá
-                                                                              tour</label>
+                                                                  <div>
+                                                                        <label for="formGroupExampleInput">Id địa danh</label>
                                                                         <input type="text" class="form-control"
-                                                                              v-model="tt.giaT" id="formGroupExampleInput"
+                                                                              v-model="tt.idDD" id="formGroupExampleInput"
                                                                               placeholder="">
                                                                   </div>
-                                                                  <div class="form-group">
-                                                                        <label for="">Trãi
-                                                                              nghiệm</label>
-                                                                        <textarea class="form-control" v-model="tt.trainghiem"
-                                                                              id="exampleFormControlTextarea1"
-                                                                              rows="3"></textarea>
-                                                                  </div>
-                                                                  <div class="form-group">
-                                                                        <label for="">Chi
-                                                                              tiết</label>
-                                                                        <textarea class="form-control" v-model="tt.chitietT"
-                                                                              id="exampleFormControlTextarea1"
-                                                                              rows="3"></textarea>
-                                                                  </div>
-                                                                  <div class="form-group row">
-                                                                        <div class="col-6">
-                                                                              <label for="formGroupExampleInput2">Số
-                                                                                    ngày</label>
-                                                                              <input type="text" v-model="tt.songay"
-                                                                                    class="form-control"
-                                                                                    id="formGroupExampleInput2"
-                                                                                    placeholder="">
-                                                                        </div>
-
-                                                                        <div class="col-6">
-                                                                              <label for="formGroupExampleInput">Số
-                                                                                    đêm</label>
-                                                                              <input type="text" class="form-control"
-                                                                                    v-model="tt.sodem"
-                                                                                    id="formGroupExampleInput" placeholder="">
-                                                                        </div>
-                                                                  </div>
-                                                                  <div class="form-group">
-                                                                        <label for="">Hình
-                                                                              ảnh</label>
-                                                                        <input class="form-control" v-model="tt.hinhT" id=""
-                                                                              rows="3">
-                                                                  </div>
-
-                                                                  <div class="form-group">
-                                                                        <img class="hinh"
-                                                                              style="height: 300px;width: 460px;border-radius: 0;"
-                                                                              :src="tt.hinhT" alt="">
+                                                                  <div>
+                                                                        <label for="formGroupExampleInput">Tiêu đề</label>
+                                                                        <input type="text" class="form-control"
+                                                                              v-model="tt.tieude" id="formGroupExampleInput"
+                                                                              placeholder="">
                                                                   </div>
                                                             </div>
                                                       </div>
@@ -199,22 +162,20 @@
                                                       <thead>
                                                             <tr>
                                                                   <th>STT</th>
-                                                                  <th class="ml-5">ID</th>
-                                                                  <th>Tên tour</th>
-                                                                  <th>Giá tour</th>
-                                                                  <th>Số ngày</th>
-                                                                  <th>Số đêm</th>
+                                                                  <th class="ml-5">ID TDD</th>
+                                                                  <th>idT</th>
+                                                                  <th>idDD</th>
+                                                                  <th>Tiêu đề</th>
                                                                   <th>Actions</th>
                                                             </tr>
                                                       </thead>
                                                       <tbody>
                                                             <tr :key="index" v-for="(tt, index) in dsLT ">
                                                                   <td>{{ index + 1 }}</td>
+                                                                  <td>{{ tt.idTDD }}</td>
                                                                   <td>{{ tt.idT }}</td>
-                                                                  <td>{{ tt.tenT }}</td>
-                                                                  <td>{{ tt.giaT }}</td>
-                                                                  <td>{{ tt.songay }}</td>
-                                                                  <td>{{ tt.sodem }}</td>
+                                                                  <td>{{ tt.idDD }}</td>
+                                                                  <td>{{ tt.tieude }}</td>
                                                                   <td>
                                                                         <div class="d-flex align-items-center">
                                                                               <!-- <button type="button"
@@ -222,7 +183,8 @@
                                                                                     
                                                                               </button> -->
                                                                               <!-- Button trigger modal -->
-                                                                              <button type="button" @click="chinhsua(tt.idT)"
+                                                                              <button type="button"
+                                                                                    @click="chinhsua(tt.idTDD)"
                                                                                     class="btn btn-success btn-sm btn-icon-text mr-3"
                                                                                     data-toggle="modal"
                                                                                     data-target="#exampleModal">
@@ -253,93 +215,36 @@
                                                                                                 <div class="modal-body">
                                                                                                       <div :key="index"
                                                                                                             v-for="(tt, index) in LTdon ">
-                                                                                                            <div
-                                                                                                                  class="form-group">
+                                                                                                            <div>
                                                                                                                   <label
-                                                                                                                        for="formGroupExampleInput">Tên
+                                                                                                                        for="formGroupExampleInput">Id
                                                                                                                         tour</label>
                                                                                                                   <input type="text"
                                                                                                                         class="form-control"
-                                                                                                                        v-model="tt.tenT"
+                                                                                                                        v-model="tt.idT"
                                                                                                                         id="formGroupExampleInput"
                                                                                                                         placeholder="">
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                  class="form-group">
+                                                                                                            <div>
                                                                                                                   <label
-                                                                                                                        for="formGroupExampleInput">Giá
-                                                                                                                        tour</label>
+                                                                                                                        for="formGroupExampleInput">Id
+                                                                                                                        địa
+                                                                                                                        danh</label>
                                                                                                                   <input type="text"
                                                                                                                         class="form-control"
-                                                                                                                        v-model="tt.giaT"
+                                                                                                                        v-model="tt.idDD"
                                                                                                                         id="formGroupExampleInput"
                                                                                                                         placeholder="">
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                  class="form-group">
+                                                                                                            <div>
                                                                                                                   <label
-                                                                                                                        for="">Trãi
-                                                                                                                        nghiệm</label>
-                                                                                                                  <textarea
+                                                                                                                        for="formGroupExampleInput">Tiêu
+                                                                                                                        đề</label>
+                                                                                                                  <input type="text"
                                                                                                                         class="form-control"
-                                                                                                                        v-model="tt.trainghiem"
-                                                                                                                        id="exampleFormControlTextarea1"
-                                                                                                                        rows="3"></textarea>
-                                                                                                            </div>
-                                                                                                            <div
-                                                                                                                  class="form-group">
-                                                                                                                  <label
-                                                                                                                        for="">Chi
-                                                                                                                        tiết</label>
-                                                                                                                  <textarea
-                                                                                                                        class="form-control"
-                                                                                                                        v-model="tt.chitietT"
-                                                                                                                        id="exampleFormControlTextarea1"
-                                                                                                                        rows="3"></textarea>
-                                                                                                            </div>
-                                                                                                            <div
-                                                                                                                  class="form-group row">
-                                                                                                                  <div
-                                                                                                                        class="col-6">
-                                                                                                                        <label
-                                                                                                                              for="formGroupExampleInput2">Số
-                                                                                                                              ngày</label>
-                                                                                                                        <input type="text"
-                                                                                                                              v-model="tt.songay"
-                                                                                                                              class="form-control"
-                                                                                                                              id="formGroupExampleInput2"
-                                                                                                                              placeholder="">
-                                                                                                                  </div>
-
-                                                                                                                  <div
-                                                                                                                        class="col-6">
-                                                                                                                        <label
-                                                                                                                              for="formGroupExampleInput">Số
-                                                                                                                              đêm</label>
-                                                                                                                        <input type="text"
-                                                                                                                              class="form-control"
-                                                                                                                              v-model="tt.sodem"
-                                                                                                                              id="formGroupExampleInput"
-                                                                                                                              placeholder="">
-                                                                                                                  </div>
-                                                                                                            </div>
-                                                                                                            <div
-                                                                                                                  class="form-group">
-                                                                                                                  <label
-                                                                                                                        for="">Hình
-                                                                                                                        ảnh</label>
-                                                                                                                  <input class="form-control"
-                                                                                                                        v-model="tt.hinhT"
-                                                                                                                        id=""
-                                                                                                                        rows="3">
-                                                                                                            </div>
-
-                                                                                                            <div
-                                                                                                                  class="form-group">
-                                                                                                                  <img class="hinh"
-                                                                                                                        style="height: 300px;width: 460px;border-radius: 0;"
-                                                                                                                        :src="tt.hinhT"
-                                                                                                                        alt="">
+                                                                                                                        v-model="tt.tieude"
+                                                                                                                        id="formGroupExampleInput"
+                                                                                                                        placeholder="">
                                                                                                             </div>
                                                                                                       </div>
                                                                                                 </div>
@@ -355,7 +260,7 @@
                                                                                           </div>
                                                                                     </div>
                                                                               </div>
-                                                                              <button type="button" @click="showTT(tt.idT)"
+                                                                              <button type="button" @click="showTT(tt.idTDD)"
                                                                                     class="btn btn-danger btn-sm btn-icon-text">
                                                                                     Delete
                                                                                     <i
@@ -410,36 +315,22 @@ export default {
                   isVisible: false,
                   message: "",
                   dsLT: [],
-                  tour: [],
                   LTdon: [],
                   updateLT: [],
                   themLT: [{
-                        tenT: '',
-                        giaT: '',
-                        trainghiem: '',
-                        chitietT: '',
-                        songay: '',
-                        sodem: '',
-                        hinhT: '',
+                        idT: '',
+                        idDD: '',
+                        tieude: '',
                   }],
                   idLTdelete: '',
-                  tongLT: []
             };
       },
 
       mounted() {
 
-            axios.get('http://localhost:3000/api/tour/dstour')
+            axios.get('http://localhost:3000/api/TDD/')
                   .then((response) => {
                         this.dsLT = response.data;
-                        // console.log('dsDD', this.dsDD)
-                  })
-                  .catch((error) => {
-                        console.log(error);
-                  });
-            axios.get('http://localhost:3000/api/tour/tongtour/')
-                  .then((response) => {
-                        this.tongLT = response.data;
                         // console.log('dsDD', this.dsDD)
                   })
                   .catch((error) => {
@@ -448,9 +339,9 @@ export default {
 
       },
       methods: {
-            showTT(idT) {
+            showTT(idTDD) {
                   // console.log('isLT1', idLT)
-                  this.idLTdelete = idT
+                  this.idLTdelete = idTDD
                   // console.log('isLT1', this.idLTdelete)
                   this.showNotification("Xác nhận xóa");
             },
@@ -469,8 +360,8 @@ export default {
             closeNotification() {
                   this.isVisible = false;
             },
-            chinhsua(idT) {
-                  axios.get('http://localhost:3000/api/tour/' + idT)
+            chinhsua(idTDD) {
+                  axios.get('http://localhost:3000/api/TDD//motDD/' + idTDD)
                         .then((response) => {
                               this.LTdon = response.data;
                               console.log('dd', this.LTdon)
@@ -481,15 +372,11 @@ export default {
             },
             update() {
                   // const ngayThangChuyenDoi = moment(this.LTdon[0].ngaykhoihanh, 'D-M-Y').format('Y-M-D');
-                  // console.log('dd1', this.LTdon)
-                  axios.put('http://localhost:3000/api/tour/' + this.LTdon[0].idT, {
-                        "tenT": this.LTdon[0].tenT,
-                        "chitietT": this.LTdon[0].chitietT,
-                        "songay": this.LTdon[0].songay,
-                        "sodem": this.LTdon[0].sodem,
-                        "giaT": this.LTdon[0].giaT,
-                        "trainghiem": this.LTdon[0].trainghiem,
-                        "hinhT": this.LTdon[0].hinhT,
+                  // // console.log('dd1', this.LTdon)
+                  axios.put('http://localhost:3000/api/TDD/' + this.LTdon[0].idTDD, {
+                        "idT": this.LTdon[0].idT,
+                        "idDD": this.LTdon[0].idDD,
+                        "tieude": this.LTdon[0].tieude,
                   })
                         .then((response) => {
                               this.updateLT = response.data;
@@ -501,15 +388,10 @@ export default {
                   window.location.reload();
             },
             addDD() {
-
-                  axios.post('http://localhost:3000/api/tour/', {
-                        "tenT": this.themLT[0].tenT,
-                        "chitietT": this.themLT[0].chitietT,
-                        "songay": this.themLT[0].songay,
-                        "sodem": this.themLT[0].sodem,
-                        "giaT": this.themLT[0].giaT,
-                        "trainghiem": this.themLT[0].trainghiem,
-                        "hinhT": this.themLT[0].hinhT,
+                  axios.post('http://localhost:3000/api/TDD/', {
+                        "idT": this.themLT[0].idT,
+                        "idDD": this.themLT[0].idDD,
+                        "tieude": this.themLT[0].tieude,
                   })
                         .then((response) => {
                               // this.updateTT = response.data;
@@ -520,23 +402,8 @@ export default {
                         });
                   window.location.reload();
             },
-            showtour() {
-                  // axios.get('http://localhost:3000/api/tour/' + this.themLT[0].idT)
-                  //       .then((response) => {
-                  //             this.tour = response.data;
-                  //             // console.log('tentinh', this.tinhthanh);
-                  //             this.tentour = this.tour[0].tenT;
-                  //             // console.log('tentinh', this.tinhthanh.);
-                  //             // console.log('tentinh1', this.tinhthanh.tenTinh);
-                  //             // console.log('tentinh2', this.tinhthanh[0].tenTinh);
-                  //       })
-                  //       .catch((error) => {
-                  //             // Nếu có lỗi xảy ra với yêu cầu, xử lý lỗi
-                  //             console.log(error);
-                  //       });
-            },
             deleteLT() {
-                  axios.delete('http://localhost:3000/api/tour/' + this.idLTdelete)
+                  axios.delete('http://localhost:3000/api/TDD/' + this.idLTdelete)
                         .then((response) => {
                               // this.LTdon = response.data;
                               console.log('delete')
@@ -544,7 +411,6 @@ export default {
                         .catch((error) => {
                               console.log(error);
                         });
-                  window.location.reload();
             }
       },
 

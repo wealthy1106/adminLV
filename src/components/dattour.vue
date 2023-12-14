@@ -75,6 +75,12 @@
                                     <span class="menu-title">Vé tour</span>
                               </router-link>
                         </li>
+                        <li class="nav-item">
+                              <router-link class="nav-link" :to="{ name: 'TDD' }">
+                                    <!-- <i class="typcn typcn-device-desktop menu-icon"></i> -->
+                                    <span class="menu-title">Tour_DD</span>
+                              </router-link>
+                        </li>
                   </ul>
             </nav>
             <div class="main-panel">
